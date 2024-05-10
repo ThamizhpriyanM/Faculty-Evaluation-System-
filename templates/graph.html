@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="myChart" width="400" height="150"></canvas>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var avg_values = {{ avg_values | tojson }};
+            var column_names = ['Teaching', 'Lectures', 'Communication', 'Discussion and Clarification', 'Classroom Management', 'Academic Progress', 'Teaching Methods', 'Overall Performance'];
+            var column_values = Object.values(avg_values);
+
+            var ctx = document.getElementById('myChart').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: column_names,
+                    datasets: [{
+                        label: 'Average Values',
+                        data: column_values,
+                        backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                        borderColor: 'rgba(255, 99, 132, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data</title>
+    <style>
+
+        body, h1, button, table {
+    margin: 0;
+    padding: 20px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    padding: 20px;
+}
+
+h1 {
+    background-color:#5e5e5e;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.button-container {
+    background-color: #515151;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.button-container button {
+    background-color: #515151 ;
+    color: rgb(17, 17, 17);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: large;
+    margin-right: 50px;
+}
+
+.button-container button:hover {
+    background-color: rgb(122, 121, 121);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+
+th {
+    background-color: #333; 
+    color: white; 
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+
+        }
+    </style>
+</head>
+<body>
+    <h1>Faculty Evaluation System</h1>
+    <div class="button-container">
+        <button onclick="displayData()">Display Data</button>
+        <button onclick="particular()">Particular Student data</button>
+        <button onclick="particular_data()">faculty Performance</button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br> 
+    <br> 
+    <br>  
+    <br> 
+    <table id="data-table">
+        
+    </table>
+    
+    <script>
+        function displayData() {
+            fetch('/display_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            })
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('data-table').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function particular(){
+            window.location.href = '/particular';
+        }
+        function particular_data(){
+            window.location.href = '/fac';
+        }
+    </script>
+</body>
+</html>
+
