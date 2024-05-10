@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #72838e; /* Set the same background color */
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        width: 100%;
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #36454f; /* Set the same background color */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .container img {
+        display: block;
+        margin: 0 auto 20px; /* Center the image horizontally and add margin at the bottom */
+        max-width: 50%; /* Ensure the image doesn't exceed its container's width */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .container h1 {
+        text-align: center;
+        color: #fff; /* Set the same text color */
+        border-bottom: 4px solid #000; /* Black underline */
+        padding-bottom: 10px;
+        font-size: 24px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        color: #fff; /* Set the same text color */
+    }
+    .form-group input,
+    .form-group select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: #f4f4f4; /* Set the same background color */
+    }
+    .form-group select {
+        height: 40px;
+    }
+    .btn {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .btn:hover {
+        background-color: #0056b3;
+    }
+    .footer {
+        margin-top: 20px;
+        text-align: center;
+        color: #666;
+    }
+    img {
+            display: block;
+            margin: 0 auto 20px; /* Center the image horizontally and add margin at the bottom */
+            max-width: 20%; /* Ensure the image doesn't exceed its container's width */
+            height: auto; /* Maintain aspect ratio */
+        }
+</style>
+</head>
+<body>
+    <br><br><br><!--<img src="static/loho.jpg">-->
+    <div class="container">
+    <h1>Faculty Evaluation System</h1>
+    <form action="{{ url_for('login') }}" method="post">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <div class="form-group">
+            <label for="userType">User Type:</label>
+            <select id="userType" name="userType">
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <button type="submit" class="btn">Login <i class="fas fa-sign-in-alt"></i></button>
+    </form>
+</div>
+<div class="footer">
+    &copy; 2024 Faculty Evaluation System
+</div>
+</body>
+</html>

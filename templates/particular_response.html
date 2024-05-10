@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Data</title>
+    <style>
+        /* General styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: black;
+            text-align: center;
+            color: #ecf0f1;
+            padding: 20px;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        header h1 {
+            margin: 0;
+            display: inline-block; /* Makes the h1 behave like a block element with inline behavior */
+            border-bottom: 0px solid white; /* Adds a line at the bottom of h1 */
+            padding-bottom: 5px; /* Adjust padding to make space between text and line */
+        }
+        table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+/* Updated styles for table header (th) */
+th {
+    background-color: #333; /* Change background color */
+    color: white; /* Change text color */
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+
+        }
+
+        /* Input and button container */
+        .input-container {
+            text-align: center;
+            margin-top: 20px; /* Adjust margin as needed */
+        }
+
+        /* Input and button styling */
+        input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: black;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Responsive design */
+        @media screen and (max-width: 600px) {
+            #data-table {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Faculty Evaluation System</h1>
+    </header>
+    <div class="input-container">
+        <label for="search_value">Search Value:</label>
+        <input type="text" id="search_value" name="search_value">
+        <button onclick="searchData()">Search</button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <table id="data-table">
+        <!-- Table will be populated dynamically -->
+    </table>
+    
+    <script>
+        function searchData() {
+            var searchValue = document.getElementById('search_value').value;
+            fetch('/search', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'search_value=' + encodeURIComponent(searchValue)
+            })
+            .then(response => response.text())
+            .then(html => {
+                document.getElementById('data-table').innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
